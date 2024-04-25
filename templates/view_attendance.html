@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Attendance Page</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" type="text/css" href="Table_styles.css">
+</head>
+
+<body>
+        <!-- Attendance data will be inserted here dynamically -->
+    <hr>
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section">Attendance Record</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-wrap">
+                        <table class="table">
+                          <thead class="thead-dark">
+                            <tr>
+                              <th>Attendance ID </th>
+                              <th>User ID</th>
+                              <th>Date</th>
+                              <th>Status</th>
+                              <th>Leave Subject</th>
+                              <th>Leave Reason</th>
+                              <th>&nbsp;</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                                {% for entry in attendance_data %}
+                            <tr class="alert" role="alert">
+                            
+                              <th scope="row">{{ entry.attendance_id }}</th>
+                              <td>{{ entry.user_id }}</td>
+                              <td>{{ entry.attendance_date }}</td>
+                              <td>{{ entry.status }}</td>
+                              <td>{{entry.subject}}</td>
+                              <td>{{entry.reason}}</td>
+                              <td>
+                                <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                            </a>
+                            </td>
+                            {% endfor %}
+                            </tr>
+                            
+                            
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  

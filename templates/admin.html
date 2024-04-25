@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Add your custom CSS styles here */
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">Admin Panel</h1>
+        <hr>
+
+        <!-- Navigation Links -->
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#viewRecords" data-toggle="tab">View Records</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#editAttendance" data-toggle="tab">Edit Attendance</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#createReport" data-toggle="tab">Create Report</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#leaveApproval" data-toggle="tab">Leave Approval</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#systemReport" data-toggle="tab">System Report</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gradingSystem" data-toggle="tab">Grading System</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content mt-3">
+            <!-- View Records Tab -->
+            <div class="tab-pane fade show active" id="viewRecords">
+    <h2>View Records</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in user_records %}
+                <tr>
+                    <td>{{ user.user_id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>
+                        {% if user.statuses %}
+                            {% for status in user.statuses.split(',') %}
+                                {{ status }}<br>
+                            {% endfor %}
+                        {% else %}
+                            No attendance records
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if user.dates %}
+                            {% for date in user.dates.split(',') %}
+                                {{ date }}<br>
+                            {% endfor %}
+                        {% else %}
+                            No date selected
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+            <!-- Edit Attendance Tab -->
+            <!-- Edit Attendance Tab -->
+<div class="tab-pane fade" id="editAttendance">
+    <h2>Edit Attendance</h2>
+    <div class="container">
+        <form method="POST" action="{{ url_for('edit_attendance') }}">
+            <div class="form-group">
+                <label for="user_id">User ID:</label>
+                <input type="text" class="form-control" id="user_id" name="user_id" required>
+            </div>
+            <div class="form-group">
+                <label for="attendance_date">Attendance Date:</label>
+                <input type="date" class="form-control" id="attendance_date" name="attendance_date" required>
+            </div>
+            <div class="form-group">
+                <label for="new_status">New Status:</label>
+                <select class="form-control" id="new_status" name="new_status" required>
+                    <option value="present">Present</option>
+                    <option value="absent">Absent</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Attendance</button>
+        </form>
+    </div>
+</div>
+
+
+            <!-- Create Report Tab -->
+            <!-- Create Report Tab -->
+<div class="tab-pane fade" id="createReport">
+    <h2>Create Report</h2>
+    <div class="container">
+        <form method="POST" action="{{ url_for('generate_report') }}">
+            <div class="form-group">
+                <label for="from_date">From Date:</label>
+                <input type="date" class="form-control" id="from_date" name="from_date" required>
+            </div>
+            <div class="form-group">
+                <label for="to_date">To Date:</label>
+                <input type="date" class="form-control" id="to_date" name="to_date" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Generate Report</button>
+        </form>
+    </div>
+</div>
+
+
+            <!-- Leave Approval Tab -->
+            <div class="tab-pane fade" id="leaveApproval">
+                <!-- Add your leave approval content here -->
+                <h2>Leave Approval</h2>
+                <!-- Add leave approval module -->
+            </div>
+
+            <!-- System Report Tab -->
+            <div class="tab-pane fade" id="systemReport">
+                <!-- Add your system report content here -->
+                <h2>System Report</h2>
+                <!-- Add form to generate system report -->
+            </div>
+
+            <!-- Grading System Tab -->
+            <div class="tab-pane fade" id="gradingSystem">
+                <!-- Add your grading system content here -->
+                <h2>Grading System</h2>
+                <!-- Add form to manage grading system -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+</body>
+</html>

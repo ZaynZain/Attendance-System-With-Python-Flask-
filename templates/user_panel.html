@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Panel</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <!-- HTMX Library -->
+<script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
+  <!-- Custom CSS -->
+  <style>
+    /* Custom styles */
+    body {
+      background-color: #f8f9fa;
+    }
+    .container-fluid {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 250px;
+      background-color: #343a40;
+      color: #fff;
+      overflow-y: auto;
+    }
+    .sidebar-brand {
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      
+    }
+    .nav-item {
+      padding: 10px 20px;
+      border-bottom: 1px solid #495057;
+    }
+    .nav-link {
+      color: #fff;
+    }
+    .nav-link i {
+      margin-right: 10px;
+    }
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+    }
+    .main-content .btn{
+        margin-left: 300px;
+    }
+    .container {
+      margin-top: 20px;
+    }
+    .btn-lg {
+      padding: 15px 25px;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .htmx-container {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="htmx-container-logout">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <nav class="col-md-3 col-lg-2 d-md-block sidebar">
+        <div class="sidebar-brand">User Panel</div>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="/user_panel"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/profile"><i class="fas fa-user"></i> Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-chart-line"></i> Report</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout') }}">  <i class="fas fa-sign-out-alt"></i>Logout</a>
+            <!-- <a class="nav-link" href="/logout" hx-get="/logout" hx-target=".htmx-container-logout"><i class="fas fa-sign-out-alt"></i> Logout</a> -->
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main content -->
+      <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 main-content">
+        {% with messages= get_flashed_messages() %}
+{% if messages %}
+    {% for message in messages %}
+    
+        <b> {{ message}} </b>
+    
+    {% endfor %}
+{% endif %}
+{% endwith %}
+
+
+
+        
+        <h2 class="mb-4">{{user}}'s Dashboard</h2>
+        <div class="btn-group">
+          <button class="btn btn-primary btn-lg" hx-trigger="click" hx-get="/mark_attendance" hx-target="#htmx-container" hx-swap-oob="true">Mark Attendance</button>
+         
+          <button class="btn btn-success btn-lg" > <a href="{{ url_for('leave') }}" style="text-decoration: none; color: #fff;">Mark Leave</a>  </button>
+          
+          <button class="btn btn-info btn-lg" hx-get="/fetch_attendance" hx-target="#attendance_data" hx-swap="outerHTML" hx-swap-oob="true">View Attendance</button>
+        </div>
+        <div class="text-center">
+          <small>Note: Once attendance is marked for the day, it cannot be modified.</small>
+        </div>
+        <!-- Container to render mark attendance page -->
+        <div id="htmx-container"></div>
+        <!-- Container to display attendance data -->
+        <div id="attendance_data"></div>
+        <!-- <div id="leave_data"></div> -->
+
+      </main>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+

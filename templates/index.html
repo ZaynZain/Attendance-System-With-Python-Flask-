@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techzec</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+/*            background-color: #f8f9fa;*/
+/*            background-color:white ;*/
+/*            padding: 50px;*/
+        }
+        h1{
+            font-family: fantasy;
+            font-size: 5rem;
+        }
+        p{
+            font-family: sans-serif;
+            color: gray;
+        }
+        .container {
+            margin-top: 160px;
+            max-width:100%;
+/*            margin: 0 auto;*/
+            text-align: center;
+        }
+        .btn-lg {
+            border: 2px solid black;
+            margin-top: 20px;
+            width: 200px;
+        }
+        .btn-lg:hover{
+            background-color: black;
+            color: white;
+
+        }
+        
+        .brand-name{
+            cursor: pointer;
+            color: #b44593;
+/*            color:-o-linear-gradient(blue,green);;*/
+/*            background-color: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);*/
+        }
+    </style>
+</head>
+<body>
+    <marquee><p class="lead" >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></marquee>
+    <br>
+
+    <div class="container">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                    style="width: 185px;" alt="logo" data-aos="fade-left">
+        <h1 data-aos="fade-right">Welcome to <font class="brand-name">EZITECH</font> Institute</h1>
+        <a href="{{ url_for('login') }}" class="btn btn-unset  btn-lg" data-aos="fade-left">Login</a>
+        <a href="{{ url_for('register') }}" class="btn btn-unset btn-lg" data-aos="fade-left">Register</a>
+    </div>
+    
+    
+
+    <!-- Bootstrap JS (optional, for dropdowns, modals, etc.) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+  AOS.init();
+</script>
+</body>
+</html>

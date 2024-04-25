@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="Table_styles.css">
+  <title>Mark Attendance</title>
+</head>
+<body>
+  <br>
+ <hr>
+  <h5>Hy {{ user_data.username}} Please Mark Attendance</h5>
+
+  <form action="/user_panel" method="post" name="attendance_form">
+
+
+<section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section">Mark Attendance</h2>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-wrap">
+                        <table class="table">
+                          <thead class="thead-dark">
+                            <tr>
+                              <th>Date </th>
+                              <th>Present</th>
+                              <th>Absent</th>
+                              <!-- <th>Status</th> -->
+                              <!-- <th>&nbsp;</th> -->
+                            </tr>
+                          </thead>
+                          <tbody>
+                               
+                            <tr class="alert" role="alert">
+                            
+                              <th scope="row">{{ current_date }}</th>
+                              <td><input type="radio" name="attendance_present" value="present" ></td>
+                              <td><input type="radio" name="attendance_absent" value="absent"></td>
+                              <!-- <td></td> -->
+                              <td>
+                                <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                            </a>
+                            </td>
+                           
+                            </tr>
+                            
+                            
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+
+
+
+
+
+  <button type="submit" value="Submit" class="btn btn-primary" style="margin-left: 40px;"> Submit</button>
+  </form>
+
+</body>
+</html>

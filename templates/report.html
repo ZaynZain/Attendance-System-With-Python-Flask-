@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Report</h1>
+        <hr>
+        <h4>Attendance Report from {{ from_date }} to {{ to_date }}</h4>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Status</th>
+                    <th>Attendance Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in report_data %}
+                <tr>
+                    <td>{{ record.username }}</td>
+                    <td>{{ record.status }}</td>
+                    <td>{{ record.attendance_date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
